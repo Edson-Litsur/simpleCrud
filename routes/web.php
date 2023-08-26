@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [CarController::class, 'index'])->name('car.index');
+Route::get('/create', [CarController::class, 'create'])->name('car.create');
+Route:: post('/', [CarController::class, 'store'])->name('car.store');
+Route::get('/{car}/edit', [CarController::class, 'edit'])->name('car.edit');
+Route::get('/{car}/update', [CarController::class, 'update'])->name('car.update');
+Route::delete('/{car}/destroy', [CarController::class, 'destroy'])->name('car.destroy');
